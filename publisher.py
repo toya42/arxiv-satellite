@@ -10,6 +10,7 @@ from feedparser.util import FeedParserDict
 
 import slackbot_settings
 
+import sys
 
 class Publisher(ABC):
 
@@ -46,16 +47,18 @@ class Publisher(ABC):
             translate_description = translator.translate_text(description, source_lang="EN", target_lang="JA").text
         except Exception:
             # Microsoft Translator
-            url = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=ja"
-            headers = {
-                "Ocp-Apim-Subscription-Key": slackbot_settings.MS_TRANSLATE_KEY,
-                "Ocp-Apim-Subscription-Region": slackbot_settings.MS_TRANSLATE_REGION,
-                "Content-type": "application/json",
-                "X-ClientTraceId": str(uuid.uuid4())
-            }
-            request = requests.post(url, headers=headers, json=[dict(text=description)])
-            response = request.json()
-            translate_description = response[0]["translations"][0]["text"]
+            #url = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=ja"
+            #headers = {
+            #    "Ocp-Apim-Subscription-Key": slackbot_settings.MS_TRANSLATE_KEY,
+            #    "Ocp-Apim-Subscription-Region": slackbot_settings.MS_TRANSLATE_REGION,
+            #    "Content-type": "application/json",
+            #    "X-ClientTraceId": str(uuid.uuid4())
+            #}
+            #request = requests.post(url, headers=headers, json=[dict(text=description)])
+            #response = request.json()
+            #translate_description = response[0]["translations"][0]["text"]
+            print('translate error')
+            sys.exit()
 
         return [
             dict(title="English", value=description, short=True),
@@ -82,24 +85,4 @@ class ArXiv(Publisher):
         authors = ", ".join(
             [re.sub(r"<a href=.*\">", "", author).replace("</a>", "") for author in article.author.split(",")])
 
-        return dict(title=title, title_link=link, author=authors, fields=self.translate(description), color=color)
-
-
-class MDPI(Publisher):
-
-    def __init__(self, genre: str) -> None:
-        self.rss = feedparser.parse(f"https://www.mdpi.com/rss/journal/{genre}")
-
-    def get_publish_date(self, article: FeedParserDict) -> datetime:
-        return datetime(*article.published_parsed[:6], tzinfo=timezone.utc).date() + timedelta(days=1)
-
-    @staticmethod
-    def parse_title(title: str) -> str:
-        return re.sub(r".*[0-9]: ", "", title)
-
-    def format_article(self, article: FeedParserDict, color: str) -> dict[str, str]:
-        title = self.parse_title(article.title)
-        link = article.link
-        description = " ".join(article.summary.replace("\'", "").split(" "))
-        authors = ", ".join([author["name"] for author in article.authors])
         return dict(title=title, title_link=link, author=authors, fields=self.translate(description), color=color)
