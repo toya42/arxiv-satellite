@@ -14,7 +14,7 @@ DEEPL_API_TOKEN = os.environ.get("DEEPL_API_TOKEN")
 CHANNEL = "arxiv"
 
 # RSS publisher
-ARXIVE_GENRE = ['math.NA','physics.flu-dyn','physics.comp-ph']
+ARXIVE_GENRE = ['physics.flu-dyn','physics.comp-ph','math.NA']
 PUBLISH = dict(ArXiv=ARXIVE_GENRE)
 
 # Slack color list
