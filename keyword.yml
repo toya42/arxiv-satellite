@@ -1,45 +1,26 @@
 genre:
-  - remote sensing
-  - earth observation
-  - geospatial
-  - spatiotemporal
+  - fluid
+  - flow
+  - machine learning
 
-resource:
-  - satellite
-  - aerial
-  - UAV
-  - WorldView
-  - Pleiades
-  - Sentinel
-  - Google Earth Engine
-  - MODIS
-  - Landsat
-  - ALOS
-  - SAR data
-  - SAR image
-  - InSAR
-  - Synthetic Aperture Radar
-  - Himawari-8
-  - TerraSAR
-  - ASNARO
-  - Gaofen
-  - hyperspectral
-  - hyper spectral
-  - multispectral
-  - multi spectral
+governingequation:
+  - navier stokes
+  - euler
+  - burgers
+  - direct numerical simulation
+  - large eddy simulation
+  - reynolds average
 
-usecase:
-  - change detection
-  - building detection
-  - road detection
-  - road extraction
-  - damage assessment
-  - ship detection
-  - cloud removal
-  - flood detection
-  - vehicle detection
-  - wildfire
-  - landuse
-  - land use
-  - landcover
-  - land cover
+scheme:
+  - finite diffenrence
+  - finite element
+  - discontinuous galerkin
+  - finite volume
+  - spectral element
+  - spectral method
+
+key:
+  - entropy
+  - kinetic energy
+  - angular momentum
+  - summation by parts
