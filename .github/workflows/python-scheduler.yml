@@ -2,7 +2,7 @@ name: arxiv-satellite
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '55 11 * * *'
   workflow_dispatch:
 
 jobs:
