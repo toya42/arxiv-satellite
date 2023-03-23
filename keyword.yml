@@ -2,15 +2,17 @@ genre:
   - fluid
   - flow
   - turbulence
-  - machine learning
 
 governingequation:
   - navier stokes
   - euler
   - burgers
   - direct numerical simulation
+  - dns
   - large eddy simulation
+  - les
   - reynolds average
+  - rans
 
 scheme:
   - finite diffenrence
