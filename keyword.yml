@@ -2,6 +2,7 @@ genre:
   - fluid
   - flow
   - turbulence
+  - computational fluid dynamics
 
 governingequation:
   - navier stokes
